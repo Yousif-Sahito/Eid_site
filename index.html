@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid ul Fitr Mubarak · blessed wishes</title>
+    <!-- Font Awesome for optional soft icons (peaceful style) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f9f5ec;  /* warm sand base */
+            color: #1f3a3f;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* elegant pattern overlay (very subtle) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(209, 179, 131, 0.08) 0%, transparent 20%),
+                              radial-gradient(circle at 80% 70%, rgba(42, 157, 143, 0.05) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* fade/slide transition on scroll – revealed by intersection observer */
+        .section {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.15, 0.85, 0.35, 1), transform 0.8s cubic-bezier(0.15, 0.85, 0.35, 1);
+            will-change: opacity, transform;
+            margin-bottom: 3.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem 1rem 2.5rem 1rem;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 20px 35px -8px rgba(30, 50, 40, 0.12), 0 0 0 1px rgba(250, 235, 200, 0.5) inset;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* headings with golden touch */
+        h1 {
+            font-size: 3.7rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #b0652d;
+            text-shadow: 0 2px 5px rgba(180, 110, 40, 0.15);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 350;
+            border-left: 6px solid #c89f68;
+            padding-left: 1.3rem;
+            margin: 0 0 1.8rem 0;
+            color: #2d5a5a;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #3d6e6e;
+            margin: 1.8rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h3 i {
+            color: #b78a4b;
+            font-size: 1.6rem;
+        }
+
+        /* hero area special */
+        .hero {
+            background: linear-gradient(145deg, #f3eee4, #fdf9f0);
+            border-radius: 3rem 1rem 3rem 1rem;
+            padding: 3rem 3rem 3rem 3rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 25px 40px -16px #b7a483;
+            border: 1px solid #ffeacb;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero .sub {
+            font-size: 1.6rem;
+            color: #4a6a5c;
+            margin: 0.5rem 0 1rem 0;
+            font-weight: 300;
+            max-width: 800px;
+        }
+
+        .hero .support {
+            font-size: 1.3rem;
+            color: #7a634b;
+            font-style: italic;
+            margin: 1rem 0;
+            border-top: 2px dashed #e6cfb2;
+            padding-top: 1.2rem;
+        }
+
+        .hero .cta {
+            background: #1f4e4e;
+            color: #fef7e9;
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 0 #0d2f2f;
+            transition: all 0.2s;
+            margin-top: 1rem;
+            border: none;
+            cursor: default; /* not interactive, just visual */
+        }
+
+        /* date widget styling */
+        .date-widget {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            border: 1px solid #e9d5b5;
+            box-shadow: 0 6px 14px rgba(150, 120, 80, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+        }
+
+        .date-item i {
+            color: #b27d48;
+            font-size: 1.6rem;
+            width: 32px;
+            text-align: center;
+        }
+
+        .date-item .date-label {
+            font-weight: 300;
+            color: #5f5f4d;
+            margin-right: 5px;
+        }
+
+        .date-item .date-value {
+            font-weight: 500;
+            color: #2d5a5a;
+            background: #f8f1e2;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #dbcbb0;
+        }
+
+        .islamic-date {
+            direction: ltr;
+        }
+
+        /* wish cards grid */
+        .wish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.8rem;
+            margin: 1.8rem 0 1rem;
+        }
+
+        .wish-card {
+            background: #ffffffd4;
+            backdrop-filter: blur(4px);
+            padding: 1.8rem 1.5rem;
+            border-radius: 2rem 0.8rem 2rem 0.8rem;
+            box-shadow: 0 8px 16px -6px rgba(60, 60, 40, 0.1);
+            border: 1px solid #f3dbc1;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            color: #1e4343;
+        }
+
+        .wish-card:hover {
+            transform: scale(1.01) translateY(-5px);
+            background: white;
+            border-color: #dbbd94;
+            box-shadow: 0 20px 28px -12px #a0815d3d;
+        }
+
+        .wish-card i {
+            color: #bc8f5a;
+            margin-right: 8px;
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            background: #e7e0d1a6;
+            padding: 2rem;
+            border-radius: 3rem 0.5rem 3rem 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .signature {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            text-align: right;
+            font-weight: 300;
+            border-top: 2px solid #dabf9b;
+            padding-top: 2rem;
+            color: #4d5f4b;
+        }
+
+        .signature strong {
+            font-weight: 500;
+            color: #865d36;
+        }
+
+        /* footer / closing */
+        .closing {
+            background: #eee5d8;
+            padding: 2rem 2.8rem;
+            border-radius: 4rem 0.8rem 4rem 0.8rem;
+            font-size: 1.3rem;
+            text-align: center;
+            color: #2a534b;
+            border: 1px solid #d1b186;
+        }
+
+        /* responsive */
+        @media (max-width: 650px) {
+            .container { padding: 1rem; }
+            .section { padding: 1.5rem; }
+            h1 { font-size: 2.8rem; }
+            .hero h1 { font-size: 3rem; }
+            .date-widget { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Date Widget - Islamic & Gregorian -->
+        <div class="date-widget" id="dateWidget">
+            <div class="date-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="date-label">Gregorian:</span>
+                <span class="date-value" id="gregorianDate">Loading...</span>
+            </div>
+            <div class="date-item">
+                <i class="fas fa-moon"></i>
+                <span class="date-label">Hijri:</span>
+                <span class="date-value islamic-date" id="hijriDate">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Hero Section (no transition needed, always visible) -->
+        <div class="hero">
+            <h1>Eid ul Fitr Mubarak</h1>
+            <div class="sub">Wishing you and your family a blessed Eid filled with peace, joy, and the mercy of Allah.</div>
+            <div class="support">May this special day bring light to your heart, barakah to your home, and happiness to all those you love.</div>
+            <div class="cta"><i class="fas fa-heart" style="margin-right: 10px;"></i> Share the blessing — pass these words of peace to others.</div>
+        </div>
+
+        <!-- Introduction section (will fade) -->
+        <div class="section" id="intro-section">
+            <h2><i class="fas fa-moon" style="margin-right: 12px; color: #c1945b;"></i>Eid Greeting</h2>
+            <div class="intro-text">
+                After a month of fasting, reflection, and prayer, Eid ul Fitr arrives as a time of joy, gratitude, and togetherness. This page gathers warm, thoughtful Eid wishes that you can read, reflect on, and share with family and friends around the world.
+            </div>
+            <p style="font-size: 1.2rem; margin-top: 1.2rem;">May every message you find here remind you of Allah's mercy, strengthen your iman, and bring peace to your heart.</p>
+        </div>
+
+        <!-- Formal wishes -->
+        <div class="section">
+            <h2><i class="fas fa-star-and-crescent"></i> Eid ul Fitr Wishes</h2>
+            <div class="wish-grid">
+                <div class="wish-card"><i class="fas fa-dove"></i> Wishing you a blessed Eid ul Fitr filled with peace, happiness, and the mercy of Allah for you and your family.</div>
+                <div class="wish-card"><i class="fas fa-home"></i> May this Eid ul Fitr bring tranquility to your heart, barakah to your home, and lasting joy to all those you love.</div>
+                <div class="wish-card"><i class="fas fa-pray"></i> On this blessed Eid, may Allah accept your worship, forgive your shortcomings, and grant you and your family a year filled with health, iman, and success.</div>
+                <div class="wish-card"><i class="fas fa-lightbulb"></i> Eid ul Fitr Mubarak. May your days be illuminated with faith, your home with warmth, and your life with countless blessings from Allah.</div>
+                <div class="wish-card"><i class="fas fa-hands"></i> As we celebrate Eid ul Fitr, may Allah's mercy surround you, His guidance strengthen you, and His blessings be with you and your family always.</div>
+            </div>
+        </div>
+
+      
+        <!-- Closing Section (with signature) -->
+        <div class="section closing">
+            <p style="font-size: 1.8rem; margin-bottom: 0.5rem;">✨ Thank you for visiting this collection of heartfelt Eid ul Fitr wishes. May every word you read and share here become a source of comfort, hope, and joy for you and those you love. ✨</p>
+            <div class="signature">
+                <strong>Wishes from Muhammad Yousif.</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Dates and Intersection Observer -->
+    <script>
+        (function() {
+            // ========== DATE FUNCTIONALITY ==========
+            function updateDates() {
+                // Set fixed date for Eid: March 21, 2026
+                const eidDate = new Date(2026, 2, 21); // Month is 0-indexed: 2 = March
+                
+                // Gregorian date formatting
+                const gregorianOptions = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                const gregorianStr = eidDate.toLocaleDateString('en-US', gregorianOptions);
+                
+                // Islamic date (Hijri) - March 21, 2026 corresponds to 10 Shawwal 1447 AH
+                const hijriStr = '10 Shawwal 1447 AH';
+                
+                // Update DOM
+                document.getElementById('gregorianDate').textContent = gregorianStr;
+                document.getElementById('hijriDate').textContent = hijriStr;
+            }
+
+            // Call date update immediately
+            updateDates();
+
+            // ========== INTERSECTION OBSERVER FOR SCROLL TRANSITIONS ==========
+            document.addEventListener('DOMContentLoaded', function() {
+                const sections = document.querySelectorAll('.section');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.2, rootMargin: '0px 0px -10px 0px' });
+                
+                sections.forEach(section => observer.observe(section));
+                
+                // Trigger check for sections already in view
+                setTimeout(() => {
+                    sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+                            section.classList.add('visible');
+                        }
+                    });
+                }, 100);
+            });
+        })();
+    </script>
+
+    <!-- tiny extra style to make the first visible sections appear with no delay if already in view -->
+    <style>
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero {
+            animation: none;
+        }
+    </style>
+</body>
+</html>
